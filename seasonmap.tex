@@ -1,0 +1,366 @@
+
+
+\begin{filecontents*}[overwrite]{\jobname.bib}
+
+@misc{notesset1,
+  title = {Lecture Notes Set 1}, 
+  date = {2020-23},
+	}
+% season (21=spring, 22=summer, 23=autumn, 24=winter)
+
+@misc{notesset2,
+  title = {Lecture Notes Set 2}, 
+  date = {2021-21},
+	}
+
+@misc{notesset3,
+  title = {Lecture Notes Set 3}, 
+  date = {2021-22},
+	}	
+
+@misc{notesset4,
+  title = {Lektur 1}, 
+  date = {2021-22},
+  langid = {ngerman},
+%  language={langgerman},
+	}	
+
+
+@misc{notesset5,
+  title = {Διάλεξη 1}, 
+  date = {2021-22},
+  langid = {greek},
+  language={langgreek},
+	}	
+
+@misc{notesset5a,
+  title = {Conferenza 1}, 
+  date = {2021-22},
+  langid = {italian},
+  language={langitalian},
+	}	
+
+@misc{testuta,
+  title = {Test uta 31}, 
+  date = {2021-21},
+%  month={31},
+%  term ={31},
+	}	
+@misc{testutb,
+  title = {Test utb 32}, 
+  date = {2021-32},
+	}	
+@misc{testutc,
+  title = {Test utc 33}, 
+  date = {2021-33},
+	}	
+@misc{testutd,
+  title = {Test utd 34}, 
+  date = {2021-34},
+	}	
+@misc{testute,
+  title = {Test ute 35}, 
+  date = {2021-35},
+	}	
+@misc{testutf,
+  title = {Test utf 36}, 
+  date = {2021-36},
+	}	
+@misc{testutg,
+  title = {Test utg 37}, 
+  date = {2021-37},
+	}	
+	
+
+@misc{testta,
+  title = {Test ta 41}, 
+  date = {2021-41},
+	}	
+@misc{testtb,
+  title = {Test tb 42}, 
+  date = {2021-41},
+	}	
+@misc{testtc,
+  title = {Test tc 43}, 
+  date = {2021-41},
+	}	
+
+
+@misc{testsa,
+  title = {Test sema 51}, 
+  date = {2021-51},
+	}	
+@misc{testsb,
+  title = {Test semb 52}, 
+  date = {2021-52},
+	}	
+@misc{tests1,
+  title = {Test sem1 53}, 
+  date = {2021-53},
+	}	
+@misc{tests2,
+  title = {Test sem2 54}, 
+  date = {2021-54},
+	}	
+
+
+\end{filecontents*}
+
+
+
+
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage[svgnames]{xcolor}
+\usepackage{fontspec}
+\babelprovide[import, onchar=ids fonts]{greek}
+\babelfont[greek]{rm}
+          [Color=DarkGreen ,
+          ]{Noto Serif}
+
+\usepackage[style=authoryear,
+dateabbrev=false,% full name of season
+language=autocite,%pick up the langid language, for citations
+autolang=other,%wrap with otherlanguage environment and translate date-related names according to the langid
+]{biblatex}
+
+
+\NewBibliographyString{hilaryterm,epiphanyterm,
+  lentterm,
+  candlemasterm,
+  easterterm,
+  trinityterm,
+  michaelmasterm,
+  firstterm,
+  secondterm,
+  thirdterm,
+  firstsemester,
+  secondsemester,
+  semesterone,
+  semestertwo,
+  springterm,
+  summerterm,
+  autumnterm,
+  winterterm,
+}
+
+\DefineBibliographyStrings{english}{%
+% 30
+  hilaryterm = {Hilary Term},% jan-mar/apr
+  epiphanyterm = {Epiphany Term},
+  lentterm    = {Lent Term},%feb-apr
+  candlemasterm = {Candlemas Term},
+  easterterm = {Easter Term},%apr-may
+  trinityterm = {Trinity Term},% apr-jun/jun-jul % At the University of Sydney, it was the second and coldest of the three terms, running from the 24th to the 34th Mondays of the year (late May to early August) in the middle of winter, until Sydney changed over to the two semester system in 1989.[4]
+  michaelmasterm = {Michaelmas Term},% oct-dec
+%  40
+  firstterm  = {First Term},
+  secondterm  = {Second Term},
+  thirdterm  = {Third Term},
+% 50
+  firstsemester   = {First Semester},
+  secondsemester   = {Second Semester},
+  semesterone   = {Semester One},
+  semestertwo   = {Semester Two},
+% 60
+  springterm = {Spring Term},
+  summerterm = {Summer Term},
+  autumnterm = {Autumn Term},
+  winterterm = {Winter Term},
+}
+
+
+%biblatx.sty
+%\def\abx@date{2020/08/23}
+%\def\abx@version{3.15a}
+%line 6057
+%\def\blx@seasonmap#1{%
+%  \blx@xifstrequal{#1}{spring}{21}
+%    {\blx@xifstrequal{#1}{summer}{22}
+%      {\blx@xifstrequal{#1}{autumn}{23}
+%        {\blx@xifstrequal{#1}{winter}{24}{}}}}}
+%-------------------------------
+
+\makeatletter
+\def\blx@seasonmap#1{%
+\blx@xifstrequal{#1}{spring}{21}
+{\blx@xifstrequal{#1}{summer}{22}
+{\blx@xifstrequal{#1}{autumn}{23}
+{\blx@xifstrequal{#1}{winter}{24}
+{\blx@xifstrequal{#1}{hilaryterm}{31}
+{\blx@xifstrequal{#1}{epiphanyterm}{32}
+{\blx@xifstrequal{#1}{lentterm}{33}
+{\blx@xifstrequal{#1}{candlemasterm}{34}
+{\blx@xifstrequal{#1}{easterterm}{35}
+{\blx@xifstrequal{#1}{trinityterm}{36}
+{\blx@xifstrequal{#1}{michaelmasterm}{37}
+{\blx@xifstrequal{#1}{firstterm}{41}
+{\blx@xifstrequal{#1}{secondterm}{42}
+{\blx@xifstrequal{#1}{thirdterm}{43}
+{\blx@xifstrequal{#1}{firstsemester}{51}
+{\blx@xifstrequal{#1}{secondsemester}{52}
+{\blx@xifstrequal{#1}{semesterone}{53}
+{\blx@xifstrequal{#1}{semestertwo}{54}
+{}}}}}}}}}}}}}}}}}}}
+\makeatother
+
+\makeatletter
+\def\blxseasonmap#1{%
+\blx@xifstrequal{#1}{spring}{21}
+{\blx@xifstrequal{#1}{summer}{22}
+{\blx@xifstrequal{#1}{autumn}{23}
+{\blx@xifstrequal{#1}{winter}{24}
+{\blx@xifstrequal{#1}{hilaryterm}{31}
+{\blx@xifstrequal{#1}{epiphanyterm}{32}
+{\blx@xifstrequal{#1}{lentterm}{33}
+{\blx@xifstrequal{#1}{candlemasterm}{34}
+{\blx@xifstrequal{#1}{easterterm}{35}
+{\blx@xifstrequal{#1}{trinityterm}{36}
+{\blx@xifstrequal{#1}{michaelmasterm}{37}
+{\blx@xifstrequal{#1}{firstterm}{41}
+{\blx@xifstrequal{#1}{secondterm}{42}
+{\blx@xifstrequal{#1}{thirdterm}{43}
+{\blx@xifstrequal{#1}{firstsemester}{51}
+{\blx@xifstrequal{#1}{secondsemester}{52}
+{\blx@xifstrequal{#1}{semesterone}{53}
+{\blx@xifstrequal{#1}{semestertwo}{54}
+{}}}}}}}}}}}}}}}}}}}
+\makeatother
+
+
+%\newcommand\seasonname[1]{\ifstrequal{#1}{#2}{}{}}
+
+
+\addbibresource{\jobname.bib}
+
+\DeclareListFormat{language}{\ifbibstring{#1}{\bibstring{#1}\addcolon}{#1}}
+
+
+%\newcommand\bibseason[1]{\blx@seasonmap{\thefield{#1season}}}
+%\newcommand\bibseason[1]{\blxseasonmap{#1}}
+
+
+
+
+\DeclareCiteCommand{\citeseasonall}
+{}
+{\textmd{\printlist{language}}
+\printfield{title}\addcomma\addspace
+%\iffieldundef{month}{}{\bibseason{\thefield{month}}}
+\iffieldundef{31season}{zz}{\bibstring{hilaryterm}}
+x
+\printdate}
+{}
+{}
+
+\DeclareCiteCommand{\citeseasontitle}
+{}
+{\printfield{title}
+}
+{}
+{}
+
+\DeclareCiteCommand{\citeseason}
+{}
+{\printdate}
+{}
+{}
+
+
+
+\DefineBibliographyStrings{greek}{%
+  spring    = {άνοιξη},
+  summer  = {καλοκαίρι},
+  autumn   = {φθινόπωρο},
+  winter     = {χειμώνας},
+  langgreek = {Ελληνικά},
+}
+
+\DefineBibliographyStrings{italian}{%
+  spring    = {primavera},
+  summer  = {estate},
+  autumn   = {autunno},
+  winter     = {inverno},
+  langitalian = {italiano},
+}
+
+
+
+
+%-----------------------------
+
+\title{\citeseasontitle{notesset1}}
+\author{}
+\date{\citeseason{notesset1}}
+%------------------
+\begin{document}
+\maketitle
+
+\section*{Overview}
+\begin{itemize}
+\item \textbf{\citeseasonall{notesset1}} covers introductory material.
+\item \textbf{\citeseasonall{notesset2}} advances to the next topic.
+\item \textbf{\citeseasonall{notesset3}} covers the extended course.
+\item German: \textbf{\citeseasonall{notesset4}} is the xyz version. 
+\item Greek: \textbf{\citeseasonall{notesset5}} is the abc version. 
+\item Italian: \textbf{\citeseasonall{notesset5a}} is the abc version. 
+\end{itemize}
+
+
+\section*{Season Extended}
+\subsection*{University Terms}
+\noindent\citeseasonall{testuta}\par
+\citeseasonall{testuta}\par
+\citeseasonall{testutb}\par
+\citeseasonall{testutc}\par
+\citeseasonall{testutd}\par
+\citeseasonall{testute}\par
+\citeseasonall{testutf}\par
+\citeseasonall{testutg}\par
+\subsection*{School Terms}
+\noindent\citeseasonall{testta}\par
+\citeseasonall{testtb}\par
+\citeseasonall{testtc}\par
+\subsection*{Semesters}
+\noindent\citeseasonall{testsa}\par
+\citeseasonall{testsb}\par
+\citeseasonall{tests1}\par
+\citeseasonall{tests2}\par
+
+
+
+biber
+
+format.pm
+
+\begin{verbatim}
+  my %seasons = ( 21 => 'spring',
+                  22 => 'summer',
+                  23 => 'autumn',
+                  24 => 'winter' );
+                  
+...\texlive\2020
+\texmf-dist
+\source
+\bibtex
+\biber
+\biblatex-biber.tar
+\biblatex-biber
+\biblatex-biber-2.15
+\lib
+\Biber
+\Date                  
+\end{verbatim}
+
+
+
+\end{document}
+
+
+
+https://tex.stackexchange.com/questions/568073/how-to-print-the-current-season-automatically?noredirect=1&lq=1
+
+
+https://tex.stackexchange.com/questions/292600/how-to-print-spring-if-in-month-is-in-jan-june-otherwise-fall/568130#568130
+
