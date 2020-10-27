@@ -1,0 +1,134 @@
+
+
+\begin{filecontents*}[overwrite]{\jobname.bib}
+
+@misc{notesset1,
+  title = {Lecture Notes Set 1}, 
+  date = {2020-23},
+	}
+% season (21=spring, 22=summer, 23=autumn, 24=winter)
+
+@misc{notesset2,
+  title = {Lecture Notes Set 2}, 
+  date = {2021-21},
+	}
+
+@misc{notesset3,
+  title = {Lecture Notes Set 3}, 
+  date = {2021-22},
+	}	
+
+@misc{notesset4,
+  title = {Lektur 1}, 
+  date = {2021-22},
+  langid = {ngerman},
+%  language={langgerman},
+	}	
+
+
+@misc{notesset5,
+  title = {Διάλεξη 1}, 
+  date = {2021-22},
+  langid = {greek},
+  language={langgreek},
+	}	
+
+@misc{notesset5a,
+  title = {Conferenza 1}, 
+  date = {2021-22},
+  langid = {italian},
+  language={langitalian},
+	}	
+
+\end{filecontents*}
+
+
+
+
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage[svgnames]{xcolor}
+\usepackage{fontspec}
+\babelprovide[import, onchar=ids fonts]{greek}
+\babelfont[greek]{rm}
+          [Color=DarkGreen ,
+          ]{Noto Serif}
+
+\usepackage[style=authoryear,
+dateabbrev=false,% full name of season
+language=autocite,%pick up the langid language, for citations
+autolang=other,%wrap with otherlanguage environment and translate date-related names according to the langid
+]{biblatex}
+
+\addbibresource{\jobname.bib}
+
+\DeclareListFormat{language}{\ifbibstring{#1}{\bibstring{#1}\addcolon}{#1}}
+
+\DeclareCiteCommand{\citeseasonall}
+{}
+{\textmd{\printlist{language}}
+\printfield{title}\addcomma\addspace\printdate}
+{}
+{}
+
+\DeclareCiteCommand{\citeseasontitle}
+{}
+{\printfield{title}
+}
+{}
+{}
+
+\DeclareCiteCommand{\citeseason}
+{}
+{\printdate}
+{}
+{}
+
+
+\DefineBibliographyStrings{greek}{%
+  spring    = {άνοιξη},
+  summer  = {καλοκαίρι},
+  autumn   = {φθινόπωρο},
+  winter     = {χειμώνας},
+  langgreek = {Ελληνικά},
+}
+
+\DefineBibliographyStrings{italian}{%
+  spring    = {primavera},
+  summer  = {estate},
+  autumn   = {autunno},
+  winter     = {inverno},
+  langitalian = {italiano},
+}
+
+
+
+
+%-----------------------------
+
+\title{\citeseasontitle{notesset1}}
+\author{}
+\date{\citeseason{notesset1}}
+%------------------
+\begin{document}
+\maketitle
+
+\section*{Overview}
+\begin{itemize}
+\item \textbf{\citeseasonall{notesset1}} covers introductory material.
+\item \textbf{\citeseasonall{notesset2}} advances to the next topic.
+\item \textbf{\citeseasonall{notesset3}} covers the extended course.
+\item German: \textbf{\citeseasonall{notesset4}} is the xyz version. 
+\item Greek: \textbf{\citeseasonall{notesset5}} is the abc version. 
+\item Italian: \textbf{\citeseasonall{notesset5a}} is the abc version. 
+\end{itemize}
+\end{document}
+
+
+
+https://tex.stackexchange.com/questions/568073/how-to-print-the-current-season-automatically?noredirect=1&lq=1
+
+
+https://tex.stackexchange.com/questions/292600/how-to-print-spring-if-in-month-is-in-jan-june-otherwise-fall/568130#568130
+
